@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card register-card shadow-lg">
+        <div class="card-body p-4">
+            <h3 class="text-center mb-4 register-title">Create Account</h3>
+
+            <form [formGroup]="form" (ngSubmit)="register()">
+
+                <!-- NAME -->
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input formControlName="name" type="text" class="form-control custom-input"
+                        placeholder="Enter your name">
+
+                    @if(form.get('name')?.invalid && form.get('name')?.touched){
+                    <p class="text-danger">*Invalid Name</p>
+                    }
+                </div>
+
+                <!-- EMAIL -->
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input formControlName="email" type="email" class="form-control custom-input"
+                        placeholder="Enter your email">
+
+                    @if(form.get('email')?.invalid && form.get('email')?.touched){
+                    <p class="text-danger">*Invalid Email</p>
+                    }
+                </div>
+
+                <!-- PASSWORD -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input formControlName="pswd" type="password" class="form-control custom-input"
+                        placeholder="Enter password">
+
+                    @if(form.get('pswd')?.invalid && form.get('pswd')?.touched){
+                    <p class="text-danger">*Invalid Password</p>
+                    }
+                </div>
+
+                <!-- CONFIRM PASSWORD -->
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input formControlName="cpswd" type="password" class="form-control custom-input"
+                        placeholder="Confirm password">
+
+                    @if(form.value.pswd !== form.value.cpswd && form.get('cpswd')?.touched){
+                    <p class="text-danger">*Passwords do not match</p>
+                    }
+
+                </div>
+
+                <button type="submit" class="btn register-btn w-100" [disabled]="form.invalid">
+                    Register
+                </button>
+
+
+                <p class="text-center mt-3">
+                    Already have an account? <a href="/login">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

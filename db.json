@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "01b6",
+      "name": "Manikandan S",
+      "email": "mani@gmail.com",
+      "pswd": "1234"
+    }
+  ],
+  "vehicles": [
+    {
+      "vname": "City",
+      "date": "2026-02-15",
+      "cost": 3000,
+      "servicetype": "Minor Service",
+      "notes": "Wash",
+      "id": "9bf7"
+    }
+  ]
+}

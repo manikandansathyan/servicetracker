@@ -1,0 +1,37 @@
+
+
+.register-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 15px;
+    border: none;
+}
+
+.register-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.custom-input {
+    border-radius: 10px;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.custom-input:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 8px rgba(118, 75, 162, 0.3);
+}
+
+.register-btn {
+    background: #764ba2;
+    border: none;
+    padding: 10px;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    background: #5a3790;
+}

@@ -1,0 +1,95 @@
+<!-- HERO ONLY PARALLAX -->
+<section class="hero">
+  <div class="overlay">
+    <h1>Vehicle Service Tracker</h1>
+  </div>
+</section>
+
+<div class="main-wrapper">
+
+  <!-- SERVICE RECORDS -->
+  <section class="card-section">
+    <h2>Service Records</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Vehicle</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>Type</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @if(vehicles.length === 0){
+          <tr>
+            <td colspan="6" class="empty">No service records yet</td>
+          </tr>
+          }
+
+          @for(vehicle of vehicles; track vehicle.id){
+          <tr>
+            <td>{{vehicle.vname}}</td>
+            <td>{{vehicle.date}}</td>
+            <td>₹ {{vehicle.cost}}</td>
+            <td>{{vehicle.servicetype}}</td>
+            <td>{{vehicle.notes}}</td>
+            <td>
+              <button class="btn-edit" (click)="editVehicle(vehicle)">Edit</button>
+              <button class="btn-danger" (click)="deleteVehicle(vehicle.id)">Delete</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ADD SERVICE -->
+  <section class="card-section">
+    <h2>Add Vehicle Service</h2>
+
+    <form [formGroup]="form" (ngSubmit)="addvehicle()" class="service-form">
+
+      <div class="form-group">
+        <label>Vehicle Name</label>
+        <input formControlName="vname" type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Service Date</label>
+        <input formControlName="date" type="date">
+      </div>
+
+      <div class="form-group">
+        <label>Cost</label>
+        <input formControlName="cost" type="number">
+      </div>
+
+      <div class="form-group">
+        <label>Service Type</label>
+        <input formControlName="servicetype" type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea formControlName="notes"></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">
+        Save Record
+      </button>
+
+    </form>
+  </section>
+
+
+
+  <div class="text-end">
+    <a href="#" class="btn btn-outline-danger">LogOut</a>
+  </div>
+
+</div>
