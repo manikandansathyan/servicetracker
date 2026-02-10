@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Apiservice {
-  baseURL: string = "http://localhost:3000/users";
-  vehicleURL: string = "http://localhost:3000/vehicles"
+  baseURL: string = "https://servicetracker-5.onrender.com/users";
+  vehicleURL: string = "https://servicetracker-5.onrender.com/vehicles"
 
   constructor(private http: HttpClient) { }
 
