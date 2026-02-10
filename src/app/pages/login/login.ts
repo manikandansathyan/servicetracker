@@ -20,34 +20,31 @@ export class Login {
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      pswd: ['', [Validators.required]]
+      password: ['', [Validators.required]]
     });
   }
 
   login() {
 
-    if (this.form.invalid) {
-      alert('Please enter valid details');
-      return;
+    if (this.form.valid) {
+
+
+      const { email, password } = this.form.value;
+
+      // 🔍 Check from JSON server
+      this.api.loginUser(email, password).subscribe((users: any[]) => {
+
+        if (users.length > 0) {
+          alert('Login Successful 🎉');
+
+          this.route.navigateByUrl('tracker');
+        } else {
+          alert('Incorrect email or password');
+        }
+
+      });
     }
 
-    const { email, pswd } = this.form.value;
-
-    // 🔍 Check from JSON server
-    this.api.loginUser(email, pswd).subscribe((users: any[]) => {
-
-      if (users.length > 0) {
-        alert('Login Successful 🎉');
-
-        // optional session flag
-        sessionStorage.setItem('isLoggedIn', 'true');
-
-        this.route.navigateByUrl('/tracker');
-      } else {
-        alert('Incorrect email or password');
-      }
-
-    });
   }
 
 

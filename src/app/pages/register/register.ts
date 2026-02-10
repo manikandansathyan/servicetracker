@@ -11,62 +11,51 @@ import { Apiservice } from '../../services/apiservice';
   styleUrl: './register.css',
 })
 export class Register {
-  
 
-  // form: FormGroup;
 
-  // constructor(
-  //   private fb: FormBuilder,
-  //   private route: Router,
-  //   private api: Apiservice
-  // ) {
-  //   this.form = this.fb.group({
-  //     name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     pswd: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]+$')]],
-  //     cpswd: ['', [Validators.required]]
-  //   });
-  // }
+  form: FormGroup;
 
-regForm:FormGroup
-
-    constructor( private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private route: Router,
-    private api: Apiservice){
-      this.regForm=this.fb.group({
-        name:['',[Validators.required]],
-        email:['',[[Validators.email]]],
-        password:['',[Validators.required]]
-      })
-    }
-    
-    regsiter(){
-        const name=this.regForm.value.username
-        const email=this.regForm.value.email
-        const password=this.regForm.value.password
+    private api: Apiservice
+  ) {
+    this.form = this.fb.group({
+      name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      email: ['', [Validators.required, Validators.email]],
+      pswd: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]+$')]],
+      cpswd: ['', [Validators.required]]
+    });
+  }
 
-        console.log(name,email,password);
-        
-        if(this.regForm.valid){
-          // alert('reg')
-          this.api.registerUser({name,email,password}).subscribe({
-            next:(res:any)=>{
-              console.log(res);
-              if(res.status==200){
-                alert('Registration Successful');
-                this.route.navigateByUrl('/login')
-              }
-              
-            },
-            error:(err)=>{
-              alert(err.error.message)
-              console.log(err);              
-            },
-          })
-        }else{
-          alert('Please fill the form')
-        }
-          
-        
+
+
+  register() {
+    if (this.form.invalid) {
+      alert('Please fill the form correctly');
+      return;
     }
+
+    const { name, email, pswd, cpswd } = this.form.value;
+
+    if (pswd !== cpswd) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    this.api.registerUser({
+      name,
+      email,
+      password: pswd
+    }).subscribe({
+      next: (res: any) => {
+        alert('Registration Successful');
+        this.route.navigateByUrl('login');
+      },
+      error: (err) => {
+        alert(err.error.message);
+      }
+    });
+  }
+
 }

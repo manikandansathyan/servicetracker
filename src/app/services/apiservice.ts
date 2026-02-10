@@ -20,8 +20,8 @@ export class Apiservice {
     return this.http.post(this.baseURL, user);
   }
 
-  loginUser(email: string, pswd: string) {
-    return this.http.get<any[]>(`${this.baseURL}?email=${email}&pswd=${pswd}`);
+  loginUser(email: string, password: string) {
+    return this.http.get<any[]>(`${this.baseURL}?email=${email}&password=${password}`);
   }
 
   addvehicle(vehicles: any) {
