@@ -35,7 +35,7 @@ export class Login {
       this.api.loginUser(email, password).subscribe((users: any[]) => {
 
         if (users.length > 0) {
-          alert('Login Successful 🎉');
+          alert('Login Successful');
 
           this.route.navigateByUrl('tracker');
         } else {
